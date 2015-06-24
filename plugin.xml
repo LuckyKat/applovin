@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.dfs.cordova.plugin.ad.applovin"
+    version="1.0.1">
+    
+    <name>Cordova AppLovin plugin</name>
+    <description>Show AppLovin full screen (static interstitial, video interstial), banner, incentivized video ad</description>
+    <license></license>
+    <author>Defenestrate Studios</author>   
+    <keywords>cordova,plugin,ad,video,applovin,monetisation</keywords>
+    <repo></repo>
+    <issue></issue> 
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    
+    <js-module src="www/applovin.js">
+        <clobbers target="window.applovin" />
+    </js-module>    
+    <!-- android -->    
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="ApplovinPlugin">
+                <param name="ios-package" value="ApplovinPlugin"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="AppLovinSdkKey">
+                <!-- ********************************** 
+                                   iOS                
+                        ADD YOUR APPLOVIN SDK KEY HERE   
+                     ********************************** -->
+                <string>2Ra4H4WP5_T4k79RmPpFzbstMBZwdQDftol8tFTyF51zDBOzaBDTo3P9Fz3tOHWG3GPwVysl2uiF35CeHPB4Ta</string>
+        </config-file>
+        
+        <!-- applovin sdk -->
+        <source-file src="src/ios/ApplovinSDK/libAppLovinSdk.a" framework="true"/>
+
+        <header-file src="src/ios/ApplovinSDK/headers/ALAd.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALAdDisplayDelegate.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALAdLoadDelegate.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALAdRewardDelegate.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALAdService.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALAdSize.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALAdType.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALAdUpdateDelegate.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALAdVideoPlaybackDelegate.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALAdView.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALErrorCodes.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALIncentivizedInterstitialAd.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALInterstitialAd.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALSdk.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALSdkSettings.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALSwiftHeaders.h"/>
+        <header-file src="src/ios/ApplovinSDK/headers/ALTargetingData.h"/> 
+
+        <!-- plugin source -->
+        <header-file src="src/ios/ApplovinPlugin.h" />
+        <source-file src="src/ios/ApplovinPlugin.m" />
+        <header-file src="src/ios/AppLovinBannerManager.h" />
+        <source-file src="src/ios/AppLovinBannerManager.mm" />
+        <header-file src="src/ios/AppLovinIncentivManager.h" />
+        <source-file src="src/ios/AppLovinIncentivManager.mm" />
+
+        <!-- framework dependencies for AppLovin -->
+        <framework src="StoreKit.framework" weak="true" />
+        <framework src="AdSupport.framework" />
+        <framework src="AVFoundation.framework" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="CoreMedia.framework" />
+        <framework src="MediaPlayer.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="Foundation.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="UIKit.framework" />
+    </platform>
+</plugin>
