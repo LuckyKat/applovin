@@ -16,6 +16,16 @@ module.exports = {
                     	self.onIncentivLoaded();
                 	}
                     break;
+                case "onVideoPlaybackEndFullyWatched":
+                    if(self.onVideoPlaybackEndFullyWatched){
+                        self.onVideoPlaybackEndFullyWatched();
+                    }
+                    break;
+                case "onVideoPlaybackEndInterrupted":
+                    if(self.onVideoPlaybackEndInterrupted){
+                        self.onVideoPlaybackEndInterrupted();
+                    }
+                    break;
                 }
             }
             else{
@@ -108,6 +118,8 @@ module.exports = {
     onIncentivLoaded: null,
     onIncentivLoadFail: null,
     onRewardSuccess: null,
-    onRewardFail: null
+    onRewardFail: null,
+    onVideoPlaybackEndFullyWatched: null,
+    onVideoPlaybackEndInterrupted: null
 
 };

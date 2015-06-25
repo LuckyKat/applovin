@@ -1,9 +1,8 @@
 #import "AppLovinIncentivManager.h"
 #import "ALIncentivizedInterstitialAd.h"
-#import "ALAdRewardDelegate.h"
 #import "ApplovinPlugin.h"
 
-@interface AppLovinIncentivManager () <ALAdLoadDelegate, ALAdRewardDelegate>
+@interface AppLovinIncentivManager () <ALAdLoadDelegate, ALAdRewardDelegate, ALAdVideoPlaybackDelegate, ALAdDisplayDelegate>
 @property (assign, atomic, getter=isVideoAvailable) BOOL videoAvailable;
 @property (strong, nonatomic) IBOutlet UILabel *adLoadStatus;
 @end
@@ -35,6 +34,8 @@
 {
     self.videoAvailable = YES;
     self.adLoadStatus.text = @"Rewarded video loaded.";
+    [ALIncentivizedInterstitialAd shared].adDisplayDelegate = self;
+    [ALIncentivizedInterstitialAd shared].adVideoPlaybackDelegate = self;
     NSLog(@"Rewarded video loaded.");
     [_plugin cordovaCallback:@"onIncentivLoaded"];
 }
@@ -56,7 +57,6 @@
     [mutableDict setObject:@"RewardSuccess" forKey:@"Type"];
 
     [_plugin cordovaCallbackDict:mutableDict];
-    
     /*
      // Grant your user coins, or better yet, set up postbacks in the UI and refresh the balance from your server.
      
@@ -117,5 +117,37 @@
      // them, for example. Don't grant them any currency. By default we'll show them a UIAlertView explaining this,
      // though you can change that from the Manage Apps UI.
      */
+}
+
+-(void) videoPlaybackEndedInAd: (ALAd*) ad atPlaybackPercent:(NSNumber*) percentPlayed fullyWatched: (BOOL) wasFullyWatched
+{
+    NSLog(@"videoPlaybackEndedInAd callback");
+    if(wasFullyWatched){
+        NSLog(@"fullywatched");
+        [_plugin cordovaCallback:@"onVideoPlaybackEndFullyWatched"];
+    }
+    else{
+        NSLog(@"interrupted");
+        [_plugin cordovaCallback:@"onVideoPlaybackEndInterrupted"];
+    }
+}
+
+-(void) ad:(ALAd *) ad wasHiddenIn: (UIView *)view
+{
+    NSLog(@"ad wasHiddenIn callback");
+}
+
+-(void) videoPlaybackBeganInAd: (ALAd*) ad
+{
+    NSLog(@"ad videoPlaybackBeganInAd callback");
+}
+
+-(void) ad:(ALAd *) ad wasDisplayedIn: (UIView *)view
+{
+    NSLog(@"ad wasDisplayedIn callback");
+}
+-(void) ad:(ALAd *) ad wasClickedIn: (UIView *)view
+{
+    NSLog(@"ad wasClickedIn callback");
 }
 @end
