@@ -26,6 +26,11 @@ module.exports = {
                         self.onVideoPlaybackEndInterrupted();
                     }
                     break;
+                case "onVideoPlaybackWasHidden":
+                    if(self.onVideoPlaybackWasHidden){
+                        self.onVideoPlaybackWasHidden();
+                    }
+                    break;
                 }
             }
             else{
@@ -120,6 +125,7 @@ module.exports = {
     onRewardSuccess: null,
     onRewardFail: null,
     onVideoPlaybackEndFullyWatched: null,
-    onVideoPlaybackEndInterrupted: null
+    onVideoPlaybackEndInterrupted: null,
+    onVideoPlaybackWasHidden: null
 
 };

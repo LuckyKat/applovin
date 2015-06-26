@@ -135,6 +135,7 @@
 -(void) ad:(ALAd *) ad wasHiddenIn: (UIView *)view
 {
     NSLog(@"ad wasHiddenIn callback");
+    [_plugin cordovaCallback:@"onVideoPlaybackWasHidden"];
 }
 
 -(void) videoPlaybackBeganInAd: (ALAd*) ad
