@@ -19,6 +19,35 @@
         <clobbers target="window.applovin" />
     </js-module>    
     <!-- android -->    
+    <platform name="android">
+        <dependency id="com.google.playservices" />
+        
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="ApplovinPlugin" >
+                <param name="android-package" value="com.applovin.plugin.cordova.ApplovinPlugin"/>
+            </feature>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+                <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+                <uses-permission android:name="android.permission.INTERNET" />
+                <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />
+            <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
+            <!-- ********************************** 
+                                   Android                
+                        ADD YOUR APPLOVIN SDK KEY HERE   
+                     ********************************** -->
+            <meta-data android:name="applovin.sdk.key" android:value="2Ra4H4WP5_T4k79RmPpFzbstMBZwdQDftol8tFTyF51zDBOzaBDTo3P9Fz3tOHWG3GPwVysl2uiF35CeHPB4Ta" />
+        </config-file>
+        
+        <source-file src="src/android/ApplovinPlugin.java" target-dir="src/com/applovin/plugin/cordova" />
+        <source-file src="src/android/applovin-sdk-5.4.3.jar" target-dir="libs" />
+
+    </platform>     
 
     <!-- ios -->
     <platform name="ios">

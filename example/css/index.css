@@ -1,0 +1,29 @@
+body{
+	background-image:url("../img/applovinCordova.png");
+	background-repeat: no-repeat;
+	background-size: 60%;
+	background-position:center 75%;
+}
+
+button{
+	background-image:url('../img/button2.png');
+	border:none;
+	background-color:transparent;
+    background-size: 100% 100%;
+    position:relative;
+    width:27%;
+    height:0;
+    padding:0.5em;
+    padding-bottom: 10%;
+    font-size: 3.33vw;
+    color: white;
+}
+.lBtn{
+	position: relative;
+	right:0%;
+}
+.rBtn{
+    float: right;
+	position: relative;
+	right:0%;
+}

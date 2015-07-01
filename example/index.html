@@ -1,0 +1,46 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<script type="text/javascript" src="cordova.js"></script>
+</head>
+<body>
+    <script>
+        document.addEventListener("deviceready", function(){
+            window.applovin.onInitializeSdk = function(){
+                //alert('onInitializeSdk in index.html');
+            };
+            window.applovin.onIncentivLoaded = function(){
+                alert('onIncentivLoaded in index.html');
+            };
+            window.applovin.onIncentivLoadFail = function(errorCode){
+                alert('onIncentivLoadFail in index.html. ErrorCode: ' +errorCode);
+            };
+            window.applovin.onRewardSuccess = function(amount, currency){
+                alert('onRewardSuccess in index.html. Amt: '+amount+' currency: '+currency);
+            };
+            window.applovin.onRewardFail = function(errorCode){
+                alert('onRewardFail in index.html. ErrorCode: ' + errorCode);
+            };
+            window.applovin.onVideoPlaybackEndFullyWatched = function(){
+                alert('onVideoPlaybackEndFullyWatched in index.html');
+            };
+            window.applovin.onVideoPlaybackEndInterrupted = function(){
+                alert('onVideoPlaybackEndInterrupted in index.html');
+            };
+            window.applovin.onVideoPlaybackWasHidden = function(){
+                alert('onVideoPlaybackWasHidden in index.html');
+            };
+                                  
+            window.applovin.initializeSdk();
+        }, false);         
+    </script>
+    
+    <br><br><br>
+    <button class="lBtn" onclick="window.applovin.bannerShow(false);">&nbsp;&nbsp; BANNER &nbsp;&nbsp; TOP</button>
+    <button class="rBtn" onclick="window.applovin.interstitialShow();">INTERSTITIAL SHOW</button><br><br>
+    <button class="lBtn" onclick="window.applovin.bannerShow(true);">BANNER BOTTOM</button>
+    <button class="rBtn" onclick="window.applovin.incentivLoad();">INCENTIVIZED LOAD</button><br><br>
+    <button class="lBtn" onclick="window.applovin.bannerRemove();">BANNER REMOVE</button>
+    <button class="rBtn" onclick="window.applovin.incentivShow();">INCENTIVIZED SHOW</button>
+</body>
+</html>
