@@ -96,6 +96,10 @@ public class ApplovinPlugin extends CordovaPlugin {
 	private void initializeSdk(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		callbackContextGeneral = callbackContext;
 		AppLovinSdk.initializeSdk(cordova.getActivity().getApplicationContext());
+		
+		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInitializeSdk");
+		pr.setKeepCallback(true);
+		callbackContextGeneral.sendPluginResult(pr);
 	}
 	
 	private void interstitialShow(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
