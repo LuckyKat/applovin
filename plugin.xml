@@ -21,6 +21,7 @@
     <!-- android -->    
     <platform name="android">
         <!-- <dependency id="com.google.playservices" /> -->
+        <framework src="com.google.android.gms:play-services-games:7.5.0" />
         
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="ApplovinPlugin" >
